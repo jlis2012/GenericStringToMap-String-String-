@@ -1,0 +1,25 @@
+/*
+     * @author jlis
+     * Generic String to Map
+     * Using user choice of splitter and separator 
+     */  
+    
+    public static Map<String, String> stringToMap(String str,
+            String keyValueSeparator, String pairSplitter)
+            throws Exception {
+        Map<String, String> map = new HashMap<String, String>();
+        if (!(str == null || str.trim().isEmpty() || keyValueSeparator == null
+                || keyValueSeparator.isEmpty() || pairSplitter == null
+                || pairSplitter.isEmpty())) {
+            
+            MapSplitter ms = Splitter.on(pairSplitter)
+                    .withKeyValueSeparator(keyValueSeparator);
+
+            map = ms.split(str);
+            if (map == null) {
+
+                map = new HashMap<String, String>();
+            }
+        }
+        return map;
+    }
